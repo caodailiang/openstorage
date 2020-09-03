@@ -140,49 +140,15 @@ func (s *NodeServer) InspectCurrent(
 	}, nil
 }
 
-func (s *NodeServer) Drain(
+func (s *NodeServer) RemoveVolumeAttachments(
 	ctx context.Context,
-	req *api.SdkNodeDrainRequest,
-) (*api.SdkNodeDrainResponse, error) {
+	req *api.SdkNodeRemoveVolumeAttachmentsRequest,
+) (*api.SdkJobResponse, error) {
 	if s.cluster() == nil {
 		return nil, status.Error(codes.Unavailable, errors.ErrResourceNotInitialized.Error())
 	}
 
-	return s.cluster().Drain(ctx, req)
-
-}
-
-func (s *NodeServer) UpdateNodeDrainJobState(
-	ctx context.Context,
-	req *api.SdkUpdateNodeDrainJobRequest,
-) (*api.SdkUpdateNodeDrainJobResponse, error) {
-	if s.cluster() == nil {
-		return nil, status.Error(codes.Unavailable, errors.ErrResourceNotInitialized.Error())
-	}
-
-	return s.cluster().UpdateNodeDrainJobState(ctx, req)
-}
-
-func (s *NodeServer) GetDrainStatus(
-	ctx context.Context,
-	req *api.SdkGetNodeDrainJobStatusRequest,
-) (*api.SdkGetNodeDrainJobStatusResponse, error) {
-	if s.cluster() == nil {
-		return nil, status.Error(codes.Unavailable, errors.ErrResourceNotInitialized.Error())
-	}
-
-	return s.cluster().GetDrainStatus(ctx, req)
-}
-
-func (s *NodeServer) EnumerateNodeDrainJobs(
-	ctx context.Context,
-	req *api.SdkEnumerateNodeDrainJobsRequest,
-) (*api.SdkEnumerateNodeDrainJobsResponse, error) {
-	if s.cluster() == nil {
-		return nil, status.Error(codes.Unavailable, errors.ErrResourceNotInitialized.Error())
-	}
-
-	return s.cluster().EnumerateNodeDrainJobs(ctx, req)
+	return s.cluster().RemoveVolumeAttachments(ctx, req)
 }
 
 func (s *NodeServer) VolumeUsageByNode(

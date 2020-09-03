@@ -16,6 +16,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/libopenstorage/openstorage/pkg/job"
 	"github.com/libopenstorage/openstorage/pkg/nodedrain"
 	"github.com/libopenstorage/openstorage/pkg/storagepool"
 
@@ -80,6 +81,7 @@ type ClusterManager struct {
 	systemTokenManager   auth.TokenGenerator
 	clusterDomainManager clusterdomain.ClusterDomainProvider
 	storagePoolProvider  api.OpenStoragePoolServer
+	jobProvider          job.Provider
 	nodeDrainProvider    nodedrain.Provider
 	snapshotPrefixes     []string
 	selfClusterDomain    string
@@ -1310,6 +1312,12 @@ func (c *ClusterManager) setupManagers(config *cluster.ClusterServerConfiguratio
 		c.clusterDomainManager = config.ConfigClusterDomainProvider
 	}
 
+	if config.ConfigJobProvider == nil {
+		c.jobProvider = job.NewDefaultJobProvider()
+	} else {
+		c.jobProvider = config.ConfigJobProvider
+	}
+
 	if config.ConfigNodeDrainProvider == nil {
 		c.nodeDrainProvider = nodedrain.NewDefaultNodeDrainProvider()
 	} else {
@@ -2045,27 +2053,27 @@ func (c *ClusterManager) EnumerateRebalanceJobs(
 	return c.storagePoolProvider.EnumerateRebalanceJobs(context, request)
 }
 
-func (c *ClusterManager) Drain(ctx context.Context, req *api.SdkNodeDrainRequest) (*api.SdkNodeDrainResponse, error) {
-	return c.nodeDrainProvider.Drain(ctx, req)
+func (c *ClusterManager) RemoveVolumeAttachments(ctx context.Context, in *api.SdkNodeRemoveVolumeAttachmentsRequest) (*api.SdkJobResponse, error) {
+	return c.nodeDrainProvider.RemoveVolumeAttachments(ctx, in)
 }
 
-func (c *ClusterManager) UpdateNodeDrainJobState(
+func (c *ClusterManager) UpdateJobState(
 	ctx context.Context,
-	req *api.SdkUpdateNodeDrainJobRequest,
-) (*api.SdkUpdateNodeDrainJobResponse, error) {
-	return c.nodeDrainProvider.UpdateNodeDrainJobState(ctx, req)
+	req *api.SdkUpdateJobRequest,
+) (*api.SdkUpdateJobResponse, error) {
+	return c.jobProvider.UpdateJobState(ctx, req)
 }
 
-func (c *ClusterManager) GetDrainStatus(
+func (c *ClusterManager) GetJobStatus(
 	ctx context.Context,
-	req *api.SdkGetNodeDrainJobStatusRequest,
-) (*api.SdkGetNodeDrainJobStatusResponse, error) {
-	return c.nodeDrainProvider.GetDrainStatus(ctx, req)
+	req *api.SdkGetJobStatusRequest,
+) (*api.SdkGetJobStatusResponse, error) {
+	return c.jobProvider.GetJobStatus(ctx, req)
 }
 
-func (c *ClusterManager) EnumerateNodeDrainJobs(
+func (c *ClusterManager) EnumerateJobs(
 	ctx context.Context,
-	req *api.SdkEnumerateNodeDrainJobsRequest,
-) (*api.SdkEnumerateNodeDrainJobsResponse, error) {
-	return c.nodeDrainProvider.EnumerateNodeDrainJobs(ctx, req)
+	req *api.SdkEnumerateJobsRequest,
+) (*api.SdkEnumerateJobsResponse, error) {
+	return c.jobProvider.EnumerateJobs(ctx, req)
 }

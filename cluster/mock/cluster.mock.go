@@ -155,21 +155,6 @@ func (mr *MockClusterMockRecorder) DisableUpdates() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DisableUpdates", reflect.TypeOf((*MockCluster)(nil).DisableUpdates))
 }
 
-// Drain mocks base method.
-func (m *MockCluster) Drain(arg0 context.Context, arg1 *api.SdkNodeDrainRequest) (*api.SdkNodeDrainResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Drain", arg0, arg1)
-	ret0, _ := ret[0].(*api.SdkNodeDrainResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// Drain indicates an expected call of Drain.
-func (mr *MockClusterMockRecorder) Drain(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drain", reflect.TypeOf((*MockCluster)(nil).Drain), arg0, arg1)
-}
-
 // EnableUpdates mocks base method.
 func (m *MockCluster) EnableUpdates() error {
 	m.ctrl.T.Helper()
@@ -229,6 +214,21 @@ func (mr *MockClusterMockRecorder) EnumerateDomains() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EnumerateDomains", reflect.TypeOf((*MockCluster)(nil).EnumerateDomains))
 }
 
+// EnumerateJobs mocks base method.
+func (m *MockCluster) EnumerateJobs(arg0 context.Context, arg1 *api.SdkEnumerateJobsRequest) (*api.SdkEnumerateJobsResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "EnumerateJobs", arg0, arg1)
+	ret0, _ := ret[0].(*api.SdkEnumerateJobsResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// EnumerateJobs indicates an expected call of EnumerateJobs.
+func (mr *MockClusterMockRecorder) EnumerateJobs(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EnumerateJobs", reflect.TypeOf((*MockCluster)(nil).EnumerateJobs), arg0, arg1)
+}
+
 // EnumerateNodeConf mocks base method.
 func (m *MockCluster) EnumerateNodeConf() (*osdconfig.NodesConfig, error) {
 	m.ctrl.T.Helper()
@@ -242,21 +242,6 @@ func (m *MockCluster) EnumerateNodeConf() (*osdconfig.NodesConfig, error) {
 func (mr *MockClusterMockRecorder) EnumerateNodeConf() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EnumerateNodeConf", reflect.TypeOf((*MockCluster)(nil).EnumerateNodeConf))
-}
-
-// EnumerateNodeDrainJobs mocks base method.
-func (m *MockCluster) EnumerateNodeDrainJobs(arg0 context.Context, arg1 *api.SdkEnumerateNodeDrainJobsRequest) (*api.SdkEnumerateNodeDrainJobsResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "EnumerateNodeDrainJobs", arg0, arg1)
-	ret0, _ := ret[0].(*api.SdkEnumerateNodeDrainJobsResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// EnumerateNodeDrainJobs indicates an expected call of EnumerateNodeDrainJobs.
-func (mr *MockClusterMockRecorder) EnumerateNodeDrainJobs(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EnumerateNodeDrainJobs", reflect.TypeOf((*MockCluster)(nil).EnumerateNodeDrainJobs), arg0, arg1)
 }
 
 // EnumeratePairs mocks base method.
@@ -333,21 +318,6 @@ func (mr *MockClusterMockRecorder) GetData() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetData", reflect.TypeOf((*MockCluster)(nil).GetData))
 }
 
-// GetDrainStatus mocks base method.
-func (m *MockCluster) GetDrainStatus(arg0 context.Context, arg1 *api.SdkGetNodeDrainJobStatusRequest) (*api.SdkGetNodeDrainJobStatusResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetDrainStatus", arg0, arg1)
-	ret0, _ := ret[0].(*api.SdkGetNodeDrainJobStatusResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetDrainStatus indicates an expected call of GetDrainStatus.
-func (mr *MockClusterMockRecorder) GetDrainStatus(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDrainStatus", reflect.TypeOf((*MockCluster)(nil).GetDrainStatus), arg0, arg1)
-}
-
 // GetGossipState mocks base method.
 func (m *MockCluster) GetGossipState() *cluster.ClusterState {
 	m.ctrl.T.Helper()
@@ -360,6 +330,21 @@ func (m *MockCluster) GetGossipState() *cluster.ClusterState {
 func (mr *MockClusterMockRecorder) GetGossipState() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGossipState", reflect.TypeOf((*MockCluster)(nil).GetGossipState))
+}
+
+// GetJobStatus mocks base method.
+func (m *MockCluster) GetJobStatus(arg0 context.Context, arg1 *api.SdkGetJobStatusRequest) (*api.SdkGetJobStatusResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetJobStatus", arg0, arg1)
+	ret0, _ := ret[0].(*api.SdkGetJobStatusResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetJobStatus indicates an expected call of GetJobStatus.
+func (mr *MockClusterMockRecorder) GetJobStatus(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetJobStatus", reflect.TypeOf((*MockCluster)(nil).GetJobStatus), arg0, arg1)
 }
 
 // GetNodeConf mocks base method.
@@ -638,6 +623,21 @@ func (m *MockCluster) Remove(arg0 []api.Node, arg1 bool) error {
 func (mr *MockClusterMockRecorder) Remove(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Remove", reflect.TypeOf((*MockCluster)(nil).Remove), arg0, arg1)
+}
+
+// RemoveVolumeAttachments mocks base method.
+func (m *MockCluster) RemoveVolumeAttachments(arg0 context.Context, arg1 *api.SdkNodeRemoveVolumeAttachmentsRequest) (*api.SdkJobResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RemoveVolumeAttachments", arg0, arg1)
+	ret0, _ := ret[0].(*api.SdkJobResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// RemoveVolumeAttachments indicates an expected call of RemoveVolumeAttachments.
+func (mr *MockClusterMockRecorder) RemoveVolumeAttachments(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveVolumeAttachments", reflect.TypeOf((*MockCluster)(nil).RemoveVolumeAttachments), arg0, arg1)
 }
 
 // Resize mocks base method.
@@ -925,6 +925,21 @@ func (mr *MockClusterMockRecorder) UpdateDomainState(arg0, arg1 interface{}) *go
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateDomainState", reflect.TypeOf((*MockCluster)(nil).UpdateDomainState), arg0, arg1)
 }
 
+// UpdateJobState mocks base method.
+func (m *MockCluster) UpdateJobState(arg0 context.Context, arg1 *api.SdkUpdateJobRequest) (*api.SdkUpdateJobResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateJobState", arg0, arg1)
+	ret0, _ := ret[0].(*api.SdkUpdateJobResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateJobState indicates an expected call of UpdateJobState.
+func (mr *MockClusterMockRecorder) UpdateJobState(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateJobState", reflect.TypeOf((*MockCluster)(nil).UpdateJobState), arg0, arg1)
+}
+
 // UpdateLabels mocks base method.
 func (m *MockCluster) UpdateLabels(arg0 map[string]string) error {
 	m.ctrl.T.Helper()
@@ -937,21 +952,6 @@ func (m *MockCluster) UpdateLabels(arg0 map[string]string) error {
 func (mr *MockClusterMockRecorder) UpdateLabels(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateLabels", reflect.TypeOf((*MockCluster)(nil).UpdateLabels), arg0)
-}
-
-// UpdateNodeDrainJobState mocks base method.
-func (m *MockCluster) UpdateNodeDrainJobState(arg0 context.Context, arg1 *api.SdkUpdateNodeDrainJobRequest) (*api.SdkUpdateNodeDrainJobResponse, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateNodeDrainJobState", arg0, arg1)
-	ret0, _ := ret[0].(*api.SdkUpdateNodeDrainJobResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// UpdateNodeDrainJobState indicates an expected call of UpdateNodeDrainJobState.
-func (mr *MockClusterMockRecorder) UpdateNodeDrainJobState(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateNodeDrainJobState", reflect.TypeOf((*MockCluster)(nil).UpdateNodeDrainJobState), arg0, arg1)
 }
 
 // UpdateRebalanceJobState mocks base method.
